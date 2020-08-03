@@ -45,7 +45,8 @@
 //! use std::time::Duration;
 //!
 //! # use futures_util::stream::{StreamExt as _, TryStreamExt as _};
-//! # use ruma_client::{api::r0::sync::sync_events::SetPresence, Client};
+//! # use ruma_client::Client;
+//! # use ruma_common::presence::PresenceState;
 //! # let homeserver_url = "https://example.com".parse().unwrap();
 //! # let client = Client::https(homeserver_url, None);
 //! # let next_batch_token = String::new();
@@ -53,7 +54,7 @@
 //! let mut sync_stream = Box::pin(client.sync(
 //!     None,
 //!     Some(next_batch_token),
-//!     SetPresence::Online,
+//!     PresenceState::Online,
 //!     Some(Duration::from_secs(30)),
 //! ));
 //! while let Some(response) = sync_stream.try_next().await? {
