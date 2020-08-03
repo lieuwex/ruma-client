@@ -219,7 +219,7 @@ where
         &self,
         user: String,
         password: String,
-        device_id: Option<DeviceId>,
+        device_id: Option<Box<DeviceId>>,
         initial_device_display_name: Option<String>,
     ) -> Result<Session, Error<api::Error>> {
         use api::r0::session::login;
@@ -329,7 +329,7 @@ where
         &self,
         filter: Option<api::r0::sync::sync_events::Filter>,
         since: Option<String>,
-        set_presence: api::r0::sync::sync_events::SetPresence,
+        set_presence: ruma_common::presence::PresenceState,
         timeout: Option<Duration>,
     ) -> impl Stream<Item = Result<api::r0::sync::sync_events::Response, Error<api::Error>>>
            + TryStream<Ok = api::r0::sync::sync_events::Response, Error = Error<api::Error>> {
